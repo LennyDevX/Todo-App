@@ -1,26 +1,34 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <v-app class="custom-body">
+    <Navbar /> <!-- Aquí se agrega el componente Navbar -->
+    <v-container >
+      <HeroSection @open-dialog="openDialog" />
+      <TodoItem ref="todoItemRef" />
+    </v-container>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HeroSection from './components/HeroSection.vue';
+import TodoItem from './components/TodoItem.vue';
+import Navbar from './components/Navbar.vue'; // Importa el componente Navbar
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    HeroSection,
+    TodoItem,
+    Navbar // Añade Navbar a la lista de componentes
+  },
+  methods: {
+    openDialog() {
+      this.$refs.todoItemRef.dialog = true;
+    }
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.custom-body {
+  background-color: rgba(179, 182, 182, 0.639);
 }
 </style>
